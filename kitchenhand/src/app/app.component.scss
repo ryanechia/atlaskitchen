@@ -24,8 +24,13 @@ h1.example-app-name {
   flex: 1;
 }
 
-.example-is-mobile .example-sidenav-container {
-  /* When the sidenav is fixed, don't constrain the height of the sidenav container. This allows the
-     `<body>` to be our scrolling element for mobile layouts. */
-  flex: 1 0 auto;
+.main-content {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.centered {
+  width: 100%;
+  max-width: 1000px;
 }
