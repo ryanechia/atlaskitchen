@@ -16,29 +16,29 @@ export class InventoryService {
   ) {
   }
 
-  getStocks(outlet: Outlet, fulfillment_type: string, serving_date?: Date, timeslots?: TimeSlot[]): Observable<any> {
+  getStocks(outlet: Outlet, fulfillmentType: string, servingDate?: Date, timeSlots?: TimeSlot[]): Observable<any> {
     let params = new HttpParams();
     params = params.set('outlet', outlet.id);
-    params = params.set('fulfillment_type', fulfillment_type);
+    params = params.set('fulfillment_type', fulfillmentType);
 
-    if (serving_date) {
-      params = params.set('serving_date', serving_date.toISOString());
+    if (servingDate) {
+      params = params.set('serving_date', servingDate.toISOString());
     }
-    if (timeslots) {
-      params = params.set('timeslots', timeslots.join('|') || ''); // assuming BE will consume `|` as a seperator
+    if (timeSlots) {
+      params = params.set('time_slots', timeSlots.join('|') || ''); // assuming BE will consume `|` as a seperator
     }
     return this.http.get('', { params }).pipe(
       catchError(() => of(void 0)), // don't terminate the observable. let subscription carry on.
     );
   }
 
-  setStock(outlet: Outlet, fulfillment_type: string, serving_date: Date, timeslot: TimeSlot, amount?: number): Observable<boolean> {
+  setStock(outlet: Outlet, fulfillmentType: string, servingDate: Date, timeslot: TimeSlot, amount?: number): Observable<boolean> {
     return this.http.post('',
       {
-        serving_date,
+        serving_date: servingDate,
         outlet,
-        fulfillment_type,
-        timeslot,
+        fulfillment_type: fulfillmentType,
+        time_slot: timeslot,
         amount
       },
       { observe: 'response' }

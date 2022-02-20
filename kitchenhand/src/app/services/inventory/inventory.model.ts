@@ -36,6 +36,6 @@ export interface Outlet {
 
 export interface TimeSlot {
   id: number;
-  start_time: Date;
-  end_time: Date;
+  startTime: Date;
+  endTime: Date;
 }
