@@ -28,12 +28,6 @@ export interface Menu {
   sections: Section[];
 }
 
-export interface Outlet {
-  id: number;
-  label: string;
-  timeslots: TimeSlot[];
-}
-
 export interface TimeSlot {
   id: number;
   startTime: Date;
