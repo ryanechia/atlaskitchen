@@ -14,12 +14,12 @@ export class OutletService {
 
   public getOutlets(): Observable<Outlet[]> {
     return this.http.get('').pipe(
-      map((result) => result.outlets),
-      map( outlets => outlets.map((outlet) => {
+      map((result: any) => result.outlets),
+      map( outlets => outlets.map((outlet: any) => {
         return {
           id: outlet.id,
           label: outlet.label,
-          timeslots: outlet.time_slots.map((timeslot) => {
+          timeslots: outlet.time_slots.map((timeslot: any) => {
             return {
               id: timeslot.id,
               startTime: timeslot.start_time,
