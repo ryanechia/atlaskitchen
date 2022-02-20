@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { Outlet, TimeSlot } from './inventory.model';
+import { TimeSlot } from './inventory.model';
 import { catchError, map, Observable, of } from 'rxjs';
+import { Outlet } from '../outlet/outlet.model';
 
 @Injectable({
   providedIn: 'root'
@@ -16,11 +17,12 @@ export class InventoryService {
   ) {
   }
 
-  getStocks(outlet: Outlet, fulfillmentType: string, servingDate?: Date, timeSlots?: TimeSlot[]): Observable<any> {
+  public getStocks(outlet: Outlet, fulfillmentType?: string, servingDate?: Date, timeSlots?: TimeSlot[]): Observable<any> {
     let params = new HttpParams();
     params = params.set('outlet', outlet.id);
-    params = params.set('fulfillment_type', fulfillmentType);
-
+    if (fulfillmentType) {
+      params = params.set('fulfillment_type', fulfillmentType);
+    }
     if (servingDate) {
       params = params.set('serving_date', servingDate.toISOString());
     }
@@ -32,7 +34,7 @@ export class InventoryService {
     );
   }
 
-  setStock(outlet: Outlet, fulfillmentType: string, servingDate: Date, timeslot: TimeSlot, amount?: number): Observable<boolean> {
+  public setStock(outlet: Outlet, fulfillmentType: string, servingDate: Date, timeslot: TimeSlot, amount?: number): Observable<boolean> {
     return this.http.post('',
       {
         serving_date: servingDate,
