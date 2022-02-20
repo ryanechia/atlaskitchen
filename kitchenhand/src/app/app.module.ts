@@ -12,6 +12,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import { MatButtonModule } from '@angular/material/button';
+import { MenuComponent } from './views/inventory/menu/menu.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { MatButtonModule } from '@angular/material/button';
     OrdersComponent,
     InventoryComponent,
     HomeComponent,
+    MenuComponent
   ],
   imports: [
     BrowserModule,
