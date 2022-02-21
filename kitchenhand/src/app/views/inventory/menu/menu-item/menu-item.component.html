@@ -1,11 +1,11 @@
 <div *ngIf="item">
   <div class="image-wrapper">
     <img [src]="item.image"/>
-    <mat-icon matListIcon>edit</mat-icon>
+<!--    <mat-icon matListIcon (click)="openEditDialog()">edit</mat-icon>-->
   </div>
   <div class="label-wrapper">
     <h2>{{item.label}}</h2>
-    <mat-icon matListIcon>edit</mat-icon>
+<!--    <mat-icon matListIcon (click)="openEditDialog()">edit</mat-icon>-->
   </div>
   <div *ngIf="itemStock">
     <mat-tab-group>
@@ -19,11 +19,11 @@
                   to {{getEndTime(pickupInventory.timeslot)}}</div>
                 <ng-container *ngIf="pickupInventory.block; else pickupAvailable">
                   <div>Quantity Available: None</div>
-                  <mat-icon matListIcon>edit</mat-icon>
+                  <mat-icon matListIcon (click)="openInventoryEditDialog(pickupInventory, 'pick')">edit</mat-icon>
                 </ng-container>
                 <ng-template #pickupAvailable>
                   <div>Quantity Available: {{pickupInventory.quantity}}</div>
-                  <mat-icon matListIcon>edit</mat-icon>
+                  <mat-icon matListIcon (click)="openInventoryEditDialog(pickupInventory, 'pick')">edit</mat-icon>
                 </ng-template>
               </div>
             </mat-list-item>
@@ -40,11 +40,11 @@
                   to {{getEndTime(deliveryInventory.timeslot)}}</div>
                 <ng-container *ngIf="deliveryInventory.block; else deliveryAvailable">
                   <div>Quantity Available: None</div>
-                  <mat-icon matListIcon>edit</mat-icon>
+                  <mat-icon matListIcon (click)="openInventoryEditDialog(deliveryInventory, 'delivery')">edit</mat-icon>
                 </ng-container>
                 <ng-template #deliveryAvailable>
                   <div>Quantity Available: {{deliveryInventory.quantity}}</div>
-                  <mat-icon matListIcon>edit</mat-icon>
+                  <mat-icon matListIcon (click)="openInventoryEditDialog(deliveryInventory, 'delivery')">edit</mat-icon>
                 </ng-template>
               </div>
             </mat-list-item>
