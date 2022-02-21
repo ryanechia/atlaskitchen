@@ -22,6 +22,7 @@ import { MatCardModule } from '@angular/material/card';
 import { FormsModule } from '@angular/forms';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { MenuItemComponent } from './views/inventory/menu/menu-item/menu-item.component';
+import { MatTabsModule } from '@angular/material/tabs';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,8 @@ import { MenuItemComponent } from './views/inventory/menu/menu-item/menu-item.co
     MatButtonModule,
     MatRippleModule,
     MatFormFieldModule,
-    FormsModule
+    FormsModule,
+    MatTabsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

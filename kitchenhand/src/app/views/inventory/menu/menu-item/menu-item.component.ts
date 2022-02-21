@@ -1,4 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { InventoryService } from '../../../../services/inventory/inventory.service';
+import { ActivatedRoute, ParamMap } from '@angular/router';
+import { forkJoin, map, of, switchMap } from 'rxjs';
+import { Item, Stock, TimeSlot } from '../../../../services/inventory/inventory.model';
+import { OutletService } from '../../../../services/outlet/outlet.service';
 
 @Component({
   selector: 'app-menu-item',
@@ -7,9 +12,36 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MenuItemComponent implements OnInit {
 
-  constructor() { }
+  public item: Item | undefined;
+  public itemStock: Stock | undefined;
+
+  constructor(
+    private inventoryService: InventoryService,
+    private outletService: OutletService,
+    private route: ActivatedRoute
+  ) { }
 
   ngOnInit(): void {
+    this.route.paramMap.pipe(
+      switchMap((params: ParamMap) => forkJoin([of(params.get('outletId') || ''), of(params.get('itemId'))])),
+      switchMap(([outletId, itemId]) =>
+        forkJoin([
+          this.inventoryService.getStocks(Number(outletId), Number(itemId)),
+          this.inventoryService.getItem(Number(outletId), Number(itemId))
+        ])),
+    ).subscribe(
+      ([itemStock, item]) => {
+        this.item = item;
+        this.itemStock = itemStock;
+      }
+    )
   }
 
+  getStartTime(timeslot: TimeSlot): string {
+    return new Date(timeslot.startTime).toLocaleString();
+  }
+
+  getEndTime(timeslot: TimeSlot): string {
+    return new Date(timeslot.endTime).toLocaleString();
+  }
 }
