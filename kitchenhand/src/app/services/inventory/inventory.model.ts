@@ -2,8 +2,8 @@ export interface Item {
   id: number;
   label: string;
   image: string;
-  start_time: Date;
-  end_time: Date;
+  startTime: Date;
+  endTime: Date;
   modifiers: ItemModifier[];
   modifierGroups: ItemModifierGroup[];
 }
