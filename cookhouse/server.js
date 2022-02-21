@@ -1,3 +1,4 @@
+import { outlets } from './mocks.js';
 import express from 'express';
 import cors from 'cors';
 
@@ -11,7 +12,26 @@ app.get('/', (req, res) => {
   res.send('Hello World!');
 });
 
-app.listen(port, () => {
+
+app.get('/outlets', (req, res) => {
+  res.send({
+    outlets: outlets
+  });
+});
+
+app.get('/outlets/:id', (req, res) => {
+  const foundOutlet = outlets.filter((outlet) => outlet.id.toString() === req.params.id);
+  if (foundOutlet.length > 0) {
+    res.send({
+      outlet: foundOutlet
+    });
+  } else {
+    res.sendStatus(404);
+  }
+
+});
+
+const server = app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
 });
 
