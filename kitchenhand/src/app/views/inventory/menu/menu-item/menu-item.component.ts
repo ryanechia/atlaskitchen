@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { InventoryService } from '../../../../services/inventory/inventory.service';
 import { ActivatedRoute, ParamMap } from '@angular/router';
-import { forkJoin, map, of, switchMap } from 'rxjs';
+import { forkJoin, of, switchMap } from 'rxjs';
 import { Item, Stock, TimeSlot } from '../../../../services/inventory/inventory.model';
-import { OutletService } from '../../../../services/outlet/outlet.service';
 
 @Component({
   selector: 'app-menu-item',
@@ -17,7 +16,6 @@ export class MenuItemComponent implements OnInit {
 
   constructor(
     private inventoryService: InventoryService,
-    private outletService: OutletService,
     private route: ActivatedRoute
   ) { }
 
