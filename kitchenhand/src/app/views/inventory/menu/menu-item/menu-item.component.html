@@ -17,8 +17,14 @@
               <div>
                 <div *ngIf="pickupInventory.timeslot">Time Period: {{getStartTime(pickupInventory.timeslot)}}
                   to {{getEndTime(pickupInventory.timeslot)}}</div>
-                <div>Quantity Available: {{pickupInventory.quantity}}</div>
-                <mat-icon matListIcon>edit</mat-icon>
+                <ng-container *ngIf="pickupInventory.block; else pickupAvailable">
+                  <div>Quantity Available: None</div>
+                  <mat-icon matListIcon>edit</mat-icon>
+                </ng-container>
+                <ng-template #pickupAvailable>
+                  <div>Quantity Available: {{pickupInventory.quantity}}</div>
+                  <mat-icon matListIcon>edit</mat-icon>
+                </ng-template>
               </div>
             </mat-list-item>
           </ng-container>
@@ -32,8 +38,14 @@
               <div>
                 <div *ngIf="deliveryInventory.timeslot">Time Period: {{getStartTime(deliveryInventory.timeslot)}}
                   to {{getEndTime(deliveryInventory.timeslot)}}</div>
-                <div>Quantity Available: {{deliveryInventory.quantity}}</div>
-                <mat-icon matListIcon>edit</mat-icon>
+                <ng-container *ngIf="deliveryInventory.block; else deliveryAvailable">
+                  <div>Quantity Available: None</div>
+                  <mat-icon matListIcon>edit</mat-icon>
+                </ng-container>
+                <ng-template #deliveryAvailable>
+                  <div>Quantity Available: {{deliveryInventory.quantity}}</div>
+                  <mat-icon matListIcon>edit</mat-icon>
+                </ng-template>
               </div>
             </mat-list-item>
           </ng-container>
