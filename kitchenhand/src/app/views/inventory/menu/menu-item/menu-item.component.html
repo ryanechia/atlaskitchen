@@ -1,6 +1,12 @@
 <div *ngIf="item">
-  <img  [src]="item.image"/>
-  <h2>{{item.label}}</h2>
+  <div class="image-wrapper">
+    <img [src]="item.image"/>
+    <mat-icon matListIcon>edit</mat-icon>
+  </div>
+  <div class="label-wrapper">
+    <h2>{{item.label}}</h2>
+    <mat-icon matListIcon>edit</mat-icon>
+  </div>
   <div *ngIf="itemStock">
     <mat-tab-group>
       <mat-tab label="Pick Up">
@@ -9,7 +15,8 @@
             <mat-divider></mat-divider>
             <mat-list-item role="listitem">
               <div>
-                <div *ngIf="pickupInventory.timeslot">Time Period: {{getStartTime(pickupInventory.timeslot)}} to {{getEndTime(pickupInventory.timeslot)}}</div>
+                <div *ngIf="pickupInventory.timeslot">Time Period: {{getStartTime(pickupInventory.timeslot)}}
+                  to {{getEndTime(pickupInventory.timeslot)}}</div>
                 <div>Quantity Available: {{pickupInventory.quantity}}</div>
                 <mat-icon matListIcon>edit</mat-icon>
               </div>
@@ -23,7 +30,8 @@
             <mat-divider></mat-divider>
             <mat-list-item role="listitem">
               <div>
-                <div *ngIf="deliveryInventory.timeslot">Time Period: {{getStartTime(deliveryInventory.timeslot)}} to {{getEndTime(deliveryInventory.timeslot)}}</div>
+                <div *ngIf="deliveryInventory.timeslot">Time Period: {{getStartTime(deliveryInventory.timeslot)}}
+                  to {{getEndTime(deliveryInventory.timeslot)}}</div>
                 <div>Quantity Available: {{deliveryInventory.quantity}}</div>
                 <mat-icon matListIcon>edit</mat-icon>
               </div>
@@ -32,6 +40,5 @@
         </mat-list>
       </mat-tab>
     </mat-tab-group>
-
   </div>
 </div>
