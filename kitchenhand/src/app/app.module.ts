@@ -21,6 +21,7 @@ import { MenuComponent } from './views/inventory/menu/menu.component';
 import { MatCardModule } from '@angular/material/card';
 import { FormsModule } from '@angular/forms';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { MenuItemComponent } from './views/inventory/menu/menu-item/menu-item.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
     UpdateComponent,
     NumberOnlyDirective,
     QuantityCounterComponent,
-    MenuComponent
+    MenuComponent,
+    MenuItemComponent
   ],
   imports: [
     BrowserModule,

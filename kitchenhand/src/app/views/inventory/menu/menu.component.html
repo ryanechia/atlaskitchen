@@ -6,7 +6,7 @@
   <mat-nav-list *ngIf="menu && menu.sections.length > 0">
      <ng-container *ngFor="let section of menu.sections">
        <h3 matSubheader>{{section.title}}</h3>
-       <mat-list-item *ngFor="let item of section.items">
+       <mat-list-item *ngFor="let item of section.items" (click)="navigateToUpdate(item.id)">
           <div mat-line>{{item.label}}</div>
        </mat-list-item>
      </ng-container>

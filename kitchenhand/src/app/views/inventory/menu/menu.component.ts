@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Menu } from '../../../services/inventory/inventory.model';
-import { ActivatedRoute, ParamMap } from '@angular/router';
+import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { filter, map, switchMap } from 'rxjs';
 import { OutletService } from '../../../services/outlet/outlet.service';
 import { Outlet } from '../../../services/outlet/outlet.model';
@@ -16,6 +16,7 @@ export class MenuComponent implements OnInit {
   public outlet: Outlet | undefined;
   constructor(
     private route: ActivatedRoute,
+    private router: Router,
     private outletService: OutletService
   ) { }
 
@@ -34,4 +35,7 @@ export class MenuComponent implements OnInit {
     )
   }
 
+  public navigateToUpdate(itemId: number): void {
+    this.router.navigate([`inventory/outlet/${this.outlet?.id}/item/${itemId}/modify`]);
+  }
 }
