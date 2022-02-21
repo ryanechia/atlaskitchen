@@ -79,13 +79,13 @@ export const timeslots = [
   },
   {
     id: 4,
-    startTime: new Date('2022-02-21T8:00:00.000Z'),
-    endTime: new Date('2022-02-28T8:00:00.000Z'),
+    startTime: new Date('2022-02-21T08:00:00.000Z'),
+    endTime: new Date('2022-02-28T08:00:00.000Z'),
   },
   {
     id: 5,
-    startTime: new Date('2022-02-26T8:00:00.000Z'),
-    endTime: new Date('2022-02-27T8:00:00.000Z'),
+    startTime: new Date('2022-02-26T08:00:00.000Z'),
+    endTime: new Date('2022-02-27T08:00:00.000Z'),
   },
   {
     id: 6,
