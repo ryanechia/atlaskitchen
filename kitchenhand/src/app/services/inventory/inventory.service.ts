@@ -17,9 +17,8 @@ export class InventoryService {
   ) {
   }
 
-  public getStocks(outlet: Outlet, fulfillmentType?: string, servingDate?: Date, timeSlots?: TimeSlot[]): Observable<any> {
+  public getStocks(outletId: number, itemId?: number, fulfillmentType?: string, servingDate?: Date, timeSlots?: TimeSlot[]): Observable<any> {
     let params = new HttpParams();
-    params = params.set('outlet', outlet.id);
     if (fulfillmentType) {
       params = params.set('fulfillment_type', fulfillmentType);
     }
@@ -29,7 +28,7 @@ export class InventoryService {
     if (timeSlots) {
       params = params.set('time_slots', timeSlots.join('|') || ''); // assuming BE will consume `|` as a seperator
     }
-    return this.http.get('', { params }).pipe(
+    return this.http.get(`http://localhost:3000/outlets/${outletId}${itemId ? `/item/${itemId}`: ''}/stock`, { params }).pipe(
       catchError(() => of(void 0)), // don't terminate the observable. let subscription carry on.
     );
   }
