@@ -1,0 +1,41 @@
+<ng-container *ngIf="editInventoryForm">
+  <form [formGroup]="editInventoryForm">
+    <mat-form-field appearance="standard">
+      <mat-label>Quantity</mat-label>
+      <input matInput formControlName="quantity" required>
+      <mat-error *ngIf="editInventoryForm.get('quantity')!.hasError('required')">
+        <span>Quantity is </span><strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="standard">
+      <input [hidden]="true" matInput>
+      <mat-checkbox formControlName="blockedState" required>Block</mat-checkbox>
+    </mat-form-field>
+    <mat-form-field appearance="standard">
+      <mat-label>Date Range</mat-label>
+      <mat-date-range-input [rangePicker]="picker">
+        <input matStartDate formControlName="startDate" placeholder="Start date">
+        <input matEndDate formControlName="endDate" placeholder="End date">
+      </mat-date-range-input>
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-date-range-picker #picker></mat-date-range-picker>
+
+      <mat-error *ngIf="editInventoryForm.get('startDate')!.hasError('matStartDateInvalid')">Invalid start date</mat-error>
+      <mat-error *ngIf="editInventoryForm.get('endDate')!.hasError('matEndDateInvalid')">Invalid end date</mat-error>
+    </mat-form-field>
+
+  </form>
+  <button
+    [disabled]="!editInventoryForm.valid || loadingSubmit"
+    mat-flat-button
+    color="primary"
+    (click)="onSubmit()">
+    <i *ngIf="loadingSubmit" class="loading-spin">
+      <mat-progress-spinner
+        [diameter]="30"
+        mode="indeterminate">
+      </mat-progress-spinner>
+    </i>
+    <span *ngIf="!loadingSubmit" translate>Submit</span>
+  </button>
+</ng-container>

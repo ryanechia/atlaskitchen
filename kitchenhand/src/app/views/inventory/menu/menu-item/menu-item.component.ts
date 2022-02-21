@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { InventoryService } from '../../../../services/inventory/inventory.service';
 import { ActivatedRoute, ParamMap } from '@angular/router';
-import { forkJoin, of, switchMap } from 'rxjs';
-import { Item, Stock, TimeSlot } from '../../../../services/inventory/inventory.model';
+import { forkJoin, of, switchMap, tap } from 'rxjs';
+import { InventoryInfo, Item, Stock, TimeSlot } from '../../../../services/inventory/inventory.model';
+import { MatDialog } from '@angular/material/dialog';
+import { UpdateComponent } from '../../update/update.component';
 
 @Component({
   selector: 'app-menu-item',
@@ -16,7 +18,8 @@ export class MenuItemComponent implements OnInit {
 
   constructor(
     private inventoryService: InventoryService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    public dialog: MatDialog
   ) { }
 
   ngOnInit(): void {
@@ -41,5 +44,17 @@ export class MenuItemComponent implements OnInit {
 
   getEndTime(timeslot: TimeSlot): string {
     return new Date(timeslot.endTime).toLocaleString();
+  }
+
+  openInventoryEditDialog(inventory: InventoryInfo, fulfillmentType: string): void {
+    this.dialog.open(UpdateComponent, {
+      width: '350px',
+      data: {
+        inventory,
+        outletId: this.outletId,
+        itemId: this.item?.id,
+        fulfillmentType
+      }
+    });
   }
 }
