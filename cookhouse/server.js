@@ -9,3 +9,11 @@ app.get('/', (req, res) => {
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
 });
+
+const processInterruption = (signals) => {
+  server.close(err => {
+    console.log('Server terminated', err, signals);
+  });
+};
+process.on('SIGTERM', processInterruption);
+process.on('SIGINT', processInterruption);
