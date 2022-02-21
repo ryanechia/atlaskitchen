@@ -32,11 +32,11 @@ export class InventoryService {
     );
   }
 
-  public setStock(outlet: Outlet, fulfillmentType: string, servingDate: Date, timeslot: TimeSlot, amount?: number): Observable<boolean> {
+  public setStock(outletId: number, itemId: number, fulfillmentType: string, servingDate?: Date, timeslot?: TimeSlot, amount?: number): Observable<boolean> {
     return this.http.post('',
       {
         serving_date: servingDate,
-        outlet,
+        outletId,
         fulfillment_type: fulfillmentType,
         time_slot: timeslot,
         amount
