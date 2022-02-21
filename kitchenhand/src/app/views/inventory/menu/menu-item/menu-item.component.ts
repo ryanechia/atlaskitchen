@@ -15,6 +15,7 @@ export class MenuItemComponent implements OnInit {
 
   public item: Item | undefined;
   public itemStock: Stock | undefined;
+  private outletId: number | undefined;
 
   constructor(
     private inventoryService: InventoryService,
@@ -24,7 +25,8 @@ export class MenuItemComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.paramMap.pipe(
-      switchMap((params: ParamMap) => forkJoin([of(params.get('outletId') || ''), of(params.get('itemId'))])),
+      tap((params: ParamMap) => this.outletId = Number(params.get('outletId'))),
+      switchMap((params: ParamMap) => forkJoin([of(this.outletId || ''), of(params.get('itemId'))])),
       switchMap(([outletId, itemId]) =>
         forkJoin([
           this.inventoryService.getStocks(Number(outletId), Number(itemId)),
