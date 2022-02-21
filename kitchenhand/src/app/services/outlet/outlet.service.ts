@@ -48,8 +48,8 @@ export class OutletService {
           timeslots: outlet.timeslots.map((timeslot: any) => {
             return {
               id: timeslot.id,
-              startTime: timeslot.start_time,
-              endTime: timeslot.end_time
+              startTime: timeslot.startTime,
+              endTime: timeslot.endTime
             };
           })
         };
