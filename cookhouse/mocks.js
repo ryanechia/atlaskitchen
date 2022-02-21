@@ -61,13 +61,33 @@ export const menus = [
 export const timeslots = [
   {
     id: 1,
-    start_time: new Date('2022-02-21T10:00:00.000Z'),
-    end_time: new Date('2022-02-21T11:00:00.000Z')
+    startTime: new Date('2022-02-21T10:00:00.000Z'),
+    endTime: new Date('2022-02-21T11:00:00.000Z')
   },
   {
     id: 2,
-    start_time: new Date('2022-02-21T11:00:00.000Z'),
-    end_time: new Date('2022-02-21T12:00:00.000Z')
+    startTime: new Date('2022-02-21T11:00:00.000Z'),
+    endTime: new Date('2022-02-21T12:00:00.000Z')
+  },
+  {
+    id: 3,
+    startTime: new Date('2022-02-21T20:00:00.000Z'),
+    endTime: new Date('2022-02-21T22:00:00.000Z'),
+  },
+  {
+    id: 4,
+    startTime: new Date('2022-02-21T8:00:00.000Z'),
+    endTime: new Date('2022-02-28T8:00:00.000Z'),
+  },
+  {
+    id: 5,
+    startTime: new Date('2022-02-26T8:00:00.000Z'),
+    endTime: new Date('2022-02-27T8:00:00.000Z'),
+  },
+  {
+    id: 6,
+    startTime: new Date('2022-02-26T18:00:00.000Z'),
+    endTime: new Date('2022-02-26T21:00:00.000Z'),
   }
 ]
 
@@ -79,4 +99,44 @@ export const outlets = [
     image: 'https://via.placeholder.com/150',
     timeslots: [...timeslots]
   }
+]
+
+export const stockInfo = [
+  {
+    timeslot: timeslots[2],
+    quantity: 20,
+    block: false
+  },
+  {
+    timeslot: timeslots[3],
+    quantity: 500,
+    block: false
+  },
+  {
+    timeslot: timeslots[4],
+    quantity: null,
+    block: true
+  },
+  {
+    timeslot: timeslots[5],
+    quantity: null,
+    block: true
+  },
+]
+
+export const stocks = [
+  {
+    id: 1,
+    menuItemId: 1,
+    outletId: 1,
+    pickupInventory: [stockInfo[1], stockInfo[3]],
+    deliveryInventory: [stockInfo[0],stockInfo[2]],
+  },
+  {
+    id: 2,
+    menuItemId: 2,
+    outletId: 1,
+    pickupInventory: [stockInfo[1], stockInfo[3]],
+    deliveryInventory: [stockInfo[0],stockInfo[2]],
+  },
 ]
