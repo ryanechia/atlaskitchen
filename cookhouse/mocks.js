@@ -26,6 +26,7 @@ export const menuItems = [
   {
     id: 1,
     label: 'Spicy Wings',
+    image: 'https://www.askchefdennis.com/wp-content/uploads/2011/02/buffalo-wings-100-680x614.jpg',
     start_time: new Date(),
     end_time: new Date(),
     modifierGroups: [...modifierGroups]
@@ -33,6 +34,7 @@ export const menuItems = [
   {
     id: 2,
     label: 'Stir Fried Mala Xiang Guo',
+    image: 'https://thewoksoflife.com/wp-content/uploads/2015/10/ma-la-xiang-guo-15.jpg',
     start_time: new Date(),
     end_time: new Date(),
     modifierGroups: [...modifierGroups]

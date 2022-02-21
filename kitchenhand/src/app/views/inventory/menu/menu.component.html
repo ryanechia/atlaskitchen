@@ -23,6 +23,7 @@
        <ng-container *ngFor="let item of section.items">
          <mat-divider></mat-divider>
          <mat-list-item  (click)="navigateToUpdate(item.id)">
+           <img matListAvatar [src]="item.image"/>
            <div mat-line>{{item.label}}</div>
          </mat-list-item>
        </ng-container>
