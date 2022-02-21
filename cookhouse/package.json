@@ -16,5 +16,6 @@
     "nodemon": "^2.0.15"
   },
   "author": "",
-  "description": ""
+  "description": "",
+  "type": "module"
 }
