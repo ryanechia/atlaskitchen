@@ -22,7 +22,7 @@ export class OutletService {
           label: outlet.label,
           menu: outlet.menu,
           image: outlet.image,
-          timeslots: outlet.time_slots.map((timeslot: any) => {
+          timeslots: outlet.timeslots.map((timeslot: any) => {
             return {
               id: timeslot.id,
               startTime: timeslot.start_time,
