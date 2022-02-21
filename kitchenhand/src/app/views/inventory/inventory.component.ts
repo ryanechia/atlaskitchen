@@ -36,7 +36,7 @@ export class InventoryComponent implements OnInit {
   }
 
   public outletClickedHandler(outlet: Outlet) {
-    this.router.navigate([`/outlets/${outlet.id}`]);
+    this.router.navigate([`/inventory/outlet/${outlet.id}`]);
   }
 
 }

@@ -1,4 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { Menu } from '../../../services/inventory/inventory.model';
+import { ActivatedRoute, ParamMap } from '@angular/router';
+import { filter, map, switchMap } from 'rxjs';
+import { OutletService } from '../../../services/outlet/outlet.service';
+import { Outlet } from '../../../services/outlet/outlet.model';
 
 @Component({
   selector: 'app-menu',
@@ -7,9 +12,26 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MenuComponent implements OnInit {
 
-  constructor() { }
+  public menu: Menu | undefined;
+  public outlet: Outlet | undefined;
+  constructor(
+    private route: ActivatedRoute,
+    private outletService: OutletService
+  ) { }
 
   ngOnInit(): void {
+    this.route.paramMap.pipe(
+      filter((params: ParamMap) => params.has('outletId')),
+      map((params: ParamMap) => params.get('outletId') || ''),
+      switchMap(
+        (outletId: string) => this.outletService.getOutlet(Number(outletId))
+      )
+    ).subscribe(
+      (outlet: Outlet) => {
+        this.outlet = outlet;
+        this.menu = outlet.menu;
+      }
+    )
   }
 
 }

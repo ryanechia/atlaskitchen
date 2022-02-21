@@ -1,3 +1,12 @@
 <div>
-
+  <div class="outlet-logo">
+    <img src="https://via.placeholder.com/150"/>
+  </div>
+  <h1>{{outlet?.label}}</h1>
+  <mat-nav-list *ngIf="menu && menu.sections.length > 0">
+     <ng-container *ngFor="let section of menu.sections">
+       <h3 matSubheader>{{section.title}}</h3>
+       <mat-list-item *ngFor="let item of section.items"></mat-list-item>
+     </ng-container>
+  </mat-nav-list>
 </div>
