@@ -1,5 +1,6 @@
 export interface Item {
   id: number;
+  label: string;
   start_time: Date;
   end_time: Date;
   modifiers: ItemModifier[];

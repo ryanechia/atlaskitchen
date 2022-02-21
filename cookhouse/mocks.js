@@ -25,10 +25,19 @@ export const modifierGroups = [
 export const menuItems = [
   {
     id: 1,
+    label: 'Spicy Wings',
     start_time: new Date(),
     end_time: new Date(),
     modifierGroups: [...modifierGroups]
-  }
+  },
+  {
+    id: 2,
+    label: 'Stir Fried Mala Xiang Guo',
+    start_time: new Date(),
+    end_time: new Date(),
+    modifierGroups: [...modifierGroups]
+  },
+
 ];
 
 export const sections = [

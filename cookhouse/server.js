@@ -23,7 +23,7 @@ app.get('/outlets/:id', (req, res) => {
   const foundOutlet = outlets.filter((outlet) => outlet.id.toString() === req.params.id);
   if (foundOutlet.length > 0) {
     res.send({
-      outlet: foundOutlet
+      outlet: foundOutlet[0]
     });
   } else {
     res.sendStatus(404);
