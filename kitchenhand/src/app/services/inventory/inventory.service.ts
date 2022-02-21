@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { TimeSlot } from './inventory.model';
+import { Item, Stock, TimeSlot } from './inventory.model';
 import { catchError, map, Observable, of } from 'rxjs';
 import { Outlet } from '../outlet/outlet.model';
 
@@ -11,13 +11,12 @@ import { Outlet } from '../outlet/outlet.model';
 
 export class InventoryService {
 
-
   constructor(
     private http: HttpClient
   ) {
   }
 
-  public getStocks(outletId: number, itemId?: number, fulfillmentType?: string, servingDate?: Date, timeSlots?: TimeSlot[]): Observable<any> {
+  public getStocks(outletId: number, itemId?: number, fulfillmentType?: string, servingDate?: Date, timeSlots?: TimeSlot[]): Observable<Stock> {
     let params = new HttpParams();
     if (fulfillmentType) {
       params = params.set('fulfillment_type', fulfillmentType);
@@ -29,7 +28,7 @@ export class InventoryService {
       params = params.set('time_slots', timeSlots.join('|') || ''); // assuming BE will consume `|` as a seperator
     }
     return this.http.get(`http://localhost:3000/outlets/${outletId}${itemId ? `/item/${itemId}`: ''}/stock`, { params }).pipe(
-      catchError(() => of(void 0)), // don't terminate the observable. let subscription carry on.
+      map((response: any) => response.stock)
     );
   }
 
