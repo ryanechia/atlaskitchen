@@ -59,3 +59,13 @@ export const timeslots = [
     end_time: new Date('2022-02-21T12:00:00.000Z')
   }
 ]
+
+export const outlets = [
+  {
+    id: 1,
+    label: 'Companion Frosty',
+    menu: menus[0],
+    image: 'https://via.placeholder.com/150',
+    timeslots: [...timeslots]
+  }
+]
