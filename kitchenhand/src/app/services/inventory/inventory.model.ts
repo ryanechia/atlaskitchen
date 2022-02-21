@@ -36,3 +36,17 @@ export interface TimeSlot {
   startTime: Date;
   endTime: Date;
 }
+
+export interface InventoryInfo {
+  timeslot: TimeSlot;
+  quantity: number;
+  block: boolean;
+}
+
+export interface Stock {
+  id: number;
+  menuItemId: number;
+  outletId: number;
+  pickupInventory: InventoryInfo[];
+  deliveryInventory: InventoryInfo[];
+}

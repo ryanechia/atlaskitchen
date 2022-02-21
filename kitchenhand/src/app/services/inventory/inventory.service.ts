@@ -50,4 +50,10 @@ export class InventoryService {
       catchError(() => of(false)),
     );
   }
+
+  public getItem(outletId: number, itemId: number): Observable<Item> {
+    return this.http.get( `http://localhost:3000/outlets/${outletId}/item/${itemId}`).pipe(
+      map((response: any) => response.item)
+    );
+  }
 }

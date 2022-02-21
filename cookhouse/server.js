@@ -1,4 +1,4 @@
-import { outlets, stocks } from './mocks.js';
+import { menuItems, outlets, stocks } from './mocks.js';
 import express from 'express';
 import cors from 'cors';
 
@@ -36,9 +36,19 @@ app.get('/outlets/:outletId/item/:itemId/stock', (req, res) => {
     (stock) => stock.outletId.toString() === req.params.outletId && stock.menuItemId.toString() === req.params.itemId);
 
   res.send({
+    stock: foundStock[0]
+  });
+});
+
+app.get('/outlets/:outletId/item/:itemId', (req, res) => {
+  const foundStock = menuItems.filter(
+    (menuItem) => menuItem.outletId.toString() === req.params.outletId && menuItem.id.toString() === req.params.itemId);
+
+  res.send({
     item: foundStock[0]
   });
 });
+
 
 const server = app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
