@@ -32,7 +32,7 @@ export interface Menu {
 }
 
 export interface TimeSlot {
-  id: number;
+  id?: number;
   startTime: Date;
   endTime: Date;
 }

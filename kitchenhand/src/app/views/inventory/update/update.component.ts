@@ -27,8 +27,8 @@ export class UpdateComponent implements OnInit {
   ngOnInit(): void {
 
     this.editInventoryForm = this.fb.group({
-      startDate: ['', Validators.required],
-      endDate: ['', Validators.required],
+      startDate: [ '', Validators.required ],
+      endDate: [ '', Validators.required ],
       startTime: [ '', Validators.required ],
       endTime: [ '', Validators.required ],
       quantity: [ this.data.inventory.quantity, Validators.required ],
@@ -37,12 +37,20 @@ export class UpdateComponent implements OnInit {
   }
 
   onSubmit(): void {
-    this.inventoryService.setStock(this.data.outletId, this.data.itemId, this.data.fulfillment).subscribe(
-      () => {
-        this.loadingSubmit = false;
-        this.complete();
-      }
-    );
+    if (this.editInventoryForm?.valid) {
+      const newTimeslot = {
+        startTime: this.editInventoryForm.value.startTime,
+        endTime: this.editInventoryForm.value.endTime
+      };
+      this.inventoryService.setStock(this.data.outletId, this.data.itemId, this.data.fulfillment, this.editInventoryForm.value.blockedState,
+        this.editInventoryForm.value.startDate, this.editInventoryForm.value.endDate,
+        newTimeslot, this.editInventoryForm.value.quantity).subscribe(
+        () => {
+          this.loadingSubmit = false;
+          this.complete();
+        }
+      );
+    }
   }
 
   complete(): void {
