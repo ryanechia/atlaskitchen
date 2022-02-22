@@ -20,7 +20,8 @@
       <mat-error *ngIf="editInventoryForm.get('startDate')!.hasError('matStartDateInvalid')">Invalid start date</mat-error>
       <mat-error *ngIf="editInventoryForm.get('endDate')!.hasError('matEndDateInvalid')">Invalid end date</mat-error>
     </mat-form-field>
-
+    <ngb-timepicker formControlName="startTime" [(ngModel)]="startTime" [meridian]="true"></ngb-timepicker>
+    <ngb-timepicker formControlName="endTime" [(ngModel)]="endTime" [meridian]="true"></ngb-timepicker>
   </form>
   <button
     [disabled]="!editInventoryForm.valid || loadingSubmit"

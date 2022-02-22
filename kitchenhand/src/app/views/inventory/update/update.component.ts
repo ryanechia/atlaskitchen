@@ -13,6 +13,8 @@ export class UpdateComponent implements OnInit {
 
   public editInventoryForm: FormGroup | undefined;
   public loadingSubmit = false;
+  public startTime: { hour: number; minute: number; } | undefined;
+  public endTime: { hour: number; minute: number; } | undefined;
 
   constructor(
     private fb: FormBuilder,
@@ -27,9 +29,10 @@ export class UpdateComponent implements OnInit {
     this.editInventoryForm = this.fb.group({
       startDate: ['', Validators.required],
       endDate: ['', Validators.required],
-      timeRange: [ '', Validators.required ],
+      startTime: [ '', Validators.required ],
+      endTime: [ '', Validators.required ],
       quantity: [ this.data.inventory.quantity, Validators.required ],
-      blockedState: [ this.data.inventory.block, Validators.required ]
+      blockedState: [ this.data.inventory.block ]
     });
   }
 
