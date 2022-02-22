@@ -31,7 +31,23 @@ export class InventoryService {
       map((response: any) => response.stock)
     );
   }
-
+  public addStock(outletId: number, itemId: number, fulfillmentType: string, isBlocked?: boolean,
+                  timeslot?: TimeSlot, amount?: number): Observable<boolean> {
+    return this.http.post(`http://localhost:3000/outlets/${outletId}/item/${itemId}/stock`,
+      {
+        fulfillmentType,
+        timeslot, // assumes the backend will search and match to existing timeslots and create if it doesn't exist.
+        amount,
+        isBlocked
+      },
+      { observe: 'response' }
+    ).pipe(
+      map((response) => {
+        return response.ok;
+      }),
+      catchError(() => of(false)),
+    );
+  }
   public setStock(outletId: number, itemId: number, inventoryId: number, fulfillmentType: string, isBlocked?: boolean,
                   timeslot?: TimeSlot, amount?: number): Observable<boolean> {
     return this.http.patch(`http://localhost:3000/outlets/${outletId}/item/${itemId}/stock/${inventoryId}`,

@@ -44,6 +44,63 @@ app.get('/outlets/:outletId/item/:itemId/stock', (req, res) => {
   });
 });
 
+app.post('/outlets/:outletId/item/:itemId/stock', (req, res) => {
+  const outletId = req.params.outletId;
+  const itemId = req.params.itemId;
+  const fulfillmentType = req.body.fulfillmentType;
+  const timeslot = req.body.timeslot;
+  const amount = req.body.amount;
+  const isBlocked = req.body.isBlocked;
+
+  const foundStock = stocks.filter(
+    (stock) => stock.outletId.toString() === outletId && stock.menuItemId.toString() === itemId);
+  if (foundStock.length > 0) {
+    const foundStockIdx = stocks.indexOf(foundStock[0]);
+
+    // find or create new timeslot obj
+    const foundTimeslot = timeslots.filter((slot) => slot.startTime === timeslot.startTime && slot.endTime === timeslot.endTime);
+    let newTimeslot;
+    if (foundTimeslot.length > 0) {
+      // there is a duplicate
+      newTimeslot = foundTimeslot[0];
+    } else {
+      // create new
+      const newId = timeslots.length;
+      newTimeslot = {
+        id: newId,
+        outletId,
+        startTime: timeslot.startTime,
+        endTime: timeslot.endTime
+      };
+      timeslots.push(newTimeslot);
+    }
+    switch (fulfillmentType) {
+      case 'delivery':
+        stocks[foundStockIdx].deliveryInventory.push({
+          timeslot: newTimeslot,
+          quantity: amount,
+          block: isBlocked
+        });
+        break;
+      case 'pickup':
+        stocks[foundStockIdx].pickupInventory.push({
+          timeslot: newTimeslot,
+          quantity: amount,
+          block: isBlocked
+        });
+        break;
+      default:
+        res.sendStatus(403);
+        return;
+    }
+
+    res.send({
+      stock: stocks[foundStockIdx]
+    });
+  } else {
+    res.sendStatus(403);
+  }
+});
 
 
 app.patch('/outlets/:outletId/item/:itemId/stock/:inventoryId', (req, res) => {

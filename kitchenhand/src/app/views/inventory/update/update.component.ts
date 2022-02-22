@@ -79,7 +79,13 @@ export class UpdateComponent implements OnInit {
         this.inventoryService.setStock(this.data.outletId, this.data.itemId, this.data.inventory.id, this.data.fulfillment, this.editInventoryForm.value.blockedState,
           newTimeslot, this.editInventoryForm.value.quantity).subscribe(
           () => {
-            this.loadingSubmit = false;
+            this.complete();
+          }
+        );
+      } else {
+        this.inventoryService.addStock(this.data.outletId, this.data.itemId, this.data.fulfillment, this.editInventoryForm.value.blockedState,
+          newTimeslot, this.editInventoryForm.value.quantity).subscribe(
+          () => {
             this.complete();
           }
         );
@@ -88,6 +94,7 @@ export class UpdateComponent implements OnInit {
   }
 
   complete(): void {
+    this.loadingSubmit = false;
     this.dialogRef.close();
   }
 }
