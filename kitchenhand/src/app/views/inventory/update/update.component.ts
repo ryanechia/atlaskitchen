@@ -38,6 +38,7 @@ export class UpdateComponent implements OnInit {
 
   onSubmit(): void {
     if (this.editInventoryForm?.valid) {
+      this.loadingSubmit = true;
       const newTimeslot = {
         startTime: this.editInventoryForm.value.startTime,
         endTime: this.editInventoryForm.value.endTime
