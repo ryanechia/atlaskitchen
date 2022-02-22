@@ -25,3 +25,11 @@ then you can start the app using the commands
 `kitchenhand\ $ yarn start`
 
 `cookhouse\ $ yarn start`
+
+
+##App behaviour
+1. The app is only made to update stock for existing menu items
+2. It is *not* capable of adding new menu items
+3. It is able to view/edit/create stock information for the menu item
+4. There is no DB - data is loaded from a series of mocks, stored in mock API memory.
+5. when mock api is terminated, data will reset.
