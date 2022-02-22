@@ -43,7 +43,7 @@ export class UpdateComponent implements OnInit {
       endDate: [ defaultEndDate || '', Validators.required ],
       startTime: [ this.startTime || '', Validators.required ],
       endTime: [ this.endTime || '', Validators.required ],
-      quantity: [ null ],
+      quantity: [ this.data.inventory?.quantity || null ],
       blockedState: [ this.data.inventory?.block || false ]
     });
 
