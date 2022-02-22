@@ -25,12 +25,24 @@ export class UpdateComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    const defaultStartDate = this.data.inventory ? new Date(this.data.inventory.timeslot.startTime) : new Date();
+    const defaultEndDate = this.data.inventory ? new Date(this.data.inventory.timeslot.endTime) : new Date();
+
+    this.startTime = this.data.inventory ? {
+      hour: defaultStartDate.getHours(),
+      minute: defaultStartDate.getMinutes(),
+    } : undefined;
+
+    this.endTime = this.data.inventory ? {
+      hour: defaultEndDate.getHours(),
+      minute: defaultEndDate.getMinutes(),
+    } : undefined;
 
     this.editInventoryForm = this.fb.group({
-      startDate: [ '', Validators.required ],
-      endDate: [ '', Validators.required ],
-      startTime: [ '', Validators.required ],
-      endTime: [ '', Validators.required ],
+      startDate: [ defaultStartDate || '', Validators.required ],
+      endDate: [ defaultEndDate || '', Validators.required ],
+      startTime: [ this.startTime || '', Validators.required ],
+      endTime: [ this.endTime || '', Validators.required ],
       quantity: [ this.data.inventory?.quantity || 0, Validators.required ],
       blockedState: [ this.data.inventory?.block || false ]
     });
