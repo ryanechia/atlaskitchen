@@ -39,12 +39,19 @@ export class UpdateComponent implements OnInit {
   onSubmit(): void {
     if (this.editInventoryForm?.valid) {
       this.loadingSubmit = true;
+
+      // combine date and time to ISO format
+      let startDate = new Date(this.editInventoryForm.value.startDate);
+      startDate.setHours(this.editInventoryForm.value.startTime.hour, this.editInventoryForm.value.startTime.minute);
+
+      let endDate = new Date(this.editInventoryForm.value.endDate);
+      endDate.setHours(this.editInventoryForm.value.endTime.hour, this.editInventoryForm.value.endTime.minute);
+
       const newTimeslot = {
-        startTime: this.editInventoryForm.value.startTime,
-        endTime: this.editInventoryForm.value.endTime
+        startTime: startDate,
+        endTime: endDate
       };
       this.inventoryService.setStock(this.data.outletId, this.data.itemId, this.data.fulfillment, this.editInventoryForm.value.blockedState,
-        this.editInventoryForm.value.startDate, this.editInventoryForm.value.endDate,
         newTimeslot, this.editInventoryForm.value.quantity).subscribe(
         () => {
           this.loadingSubmit = false;
