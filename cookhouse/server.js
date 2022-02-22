@@ -45,8 +45,10 @@ app.get('/outlets/:outletId/item/:itemId/stock', (req, res) => {
 });
 
 
-app.patch('/outlets/:outletId/item/:itemId/stock', (req, res) => {
+
+app.patch('/outlets/:outletId/item/:itemId/stock/:inventoryId', (req, res) => {
   const outletId = req.params.outletId;
+  const inventoryId = req.params.inventoryId;
   const itemId = req.params.itemId;
   const fulfillmentType = req.body.fulfillmentType;
   const timeslot = req.body.timeslot;
@@ -75,20 +77,25 @@ app.patch('/outlets/:outletId/item/:itemId/stock', (req, res) => {
       };
       timeslots.push(newTimeslot);
     }
+    let inventoryIdx;
     switch (fulfillmentType) {
       case 'delivery':
-        stocks[foundStockIdx].deliveryInventory.push({
+        inventoryIdx = stocks[foundStockIdx].deliveryInventory.indexOf(stocks[foundStockIdx].deliveryInventory.find((inventory) => inventory.id.toString() === inventoryId))
+        stocks[foundStockIdx].deliveryInventory[inventoryIdx] = {
+          id: inventoryId,
           timeslot: newTimeslot,
           quantity: amount,
           block: isBlocked
-        });
+        };
         break;
       case 'pickup':
-        stocks[foundStockIdx].pickupInventory.push({
+        inventoryIdx = stocks[foundStockIdx].pickupInventory.indexOf(stocks[foundStockIdx].pickupInventory.find((inventory) => inventory.id.toString() === inventoryId))
+        stocks[foundStockIdx].pickupInventory[inventoryIdx] = {
+          id: inventoryId,
           timeslot: newTimeslot,
           quantity: amount,
           block: isBlocked
-        });
+        };
         break;
       default:
         res.sendStatus(403);
@@ -96,7 +103,7 @@ app.patch('/outlets/:outletId/item/:itemId/stock', (req, res) => {
     }
 
     res.send({
-      stock: stocks[foundStockIdx]
+      inventory: stocks[foundStockIdx].pickupInventory[inventoryIdx]
     });
   } else {
     res.sendStatus(403);

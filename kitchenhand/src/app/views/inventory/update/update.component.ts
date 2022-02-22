@@ -76,7 +76,7 @@ export class UpdateComponent implements OnInit {
         endTime: endDate
       };
       if (this.data.inventory) {
-        this.inventoryService.setStock(this.data.outletId, this.data.itemId, this.data.fulfillment, this.editInventoryForm.value.blockedState,
+        this.inventoryService.setStock(this.data.outletId, this.data.itemId, this.data.inventory.id, this.data.fulfillment, this.editInventoryForm.value.blockedState,
           newTimeslot, this.editInventoryForm.value.quantity).subscribe(
           () => {
             this.loadingSubmit = false;

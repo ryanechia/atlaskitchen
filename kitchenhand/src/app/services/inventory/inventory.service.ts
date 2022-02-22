@@ -32,10 +32,11 @@ export class InventoryService {
     );
   }
 
-  public setStock(outletId: number, itemId: number, fulfillmentType: string, isBlocked?: boolean,
+  public setStock(outletId: number, itemId: number, inventoryId: number, fulfillmentType: string, isBlocked?: boolean,
                   timeslot?: TimeSlot, amount?: number): Observable<boolean> {
-    return this.http.patch(`http://localhost:3000/outlets/${outletId}/item/${itemId}/stock`,
+    return this.http.patch(`http://localhost:3000/outlets/${outletId}/item/${itemId}/stock/${inventoryId}`,
       {
+        inventoryId,
         fulfillmentType,
         timeslot, // assumes the backend will search and match to existing timeslots and create if it doesn't exist.
         amount,
