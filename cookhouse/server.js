@@ -52,6 +52,25 @@ app.post('/outlets/:outletId/item/:itemId/stock', (req, res) => {
   const timeslot = req.body.timeslot;
   const amount = req.body.amount;
 
+
+  // find or create new timeslot obj
+  const foundTimeslot = timeslots.filter((slot) => slot.startTime === timeslot.startTime && slot.endTime === timeslot.endTime);
+  let newTimeslot;
+  if (foundTimeslot.length > 0) {
+    // there is a duplicate
+    newTimeslot = foundTimeslot[0];
+  } else {
+    // create new
+    const newId = timeslots.length;
+    newTimeslot = {
+      id: newId,
+      outletId,
+      startTime: timeslot.startTime,
+      endTime: timeslot.endTime
+    };
+    timeslots.push(newTimeslot);
+  }
+
   res.send({
     stock: newStock[0]
   });
