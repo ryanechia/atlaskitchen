@@ -8,6 +8,10 @@ const port = 3000;
 app.use(cors());
 app.use(express.json());
 
+  // no db, just store in memory.
+ let timeslots = mockTimeslots;
+
+
 app.get('/', (req, res) => {
   res.send('Hello World!');
 });

@@ -64,31 +64,37 @@ export const menus = [
 export const timeslots = [
   {
     id: 1,
+    outletId: 1,
     startTime: new Date('2022-02-21T10:00:00.000Z'),
     endTime: new Date('2022-02-21T11:00:00.000Z')
   },
   {
     id: 2,
+    outletId: 1,
     startTime: new Date('2022-02-21T11:00:00.000Z'),
     endTime: new Date('2022-02-21T12:00:00.000Z')
   },
   {
     id: 3,
+    outletId: 1,
     startTime: new Date('2022-02-21T20:00:00.000Z'),
     endTime: new Date('2022-02-21T22:00:00.000Z'),
   },
   {
     id: 4,
+    outletId: 1,
     startTime: new Date('2022-02-21T08:00:00.000Z'),
     endTime: new Date('2022-02-28T08:00:00.000Z'),
   },
   {
     id: 5,
+    outletId: 1,
     startTime: new Date('2022-02-26T08:00:00.000Z'),
     endTime: new Date('2022-02-27T08:00:00.000Z'),
   },
   {
     id: 6,
+    outletId: 1,
     startTime: new Date('2022-02-26T18:00:00.000Z'),
     endTime: new Date('2022-02-26T21:00:00.000Z'),
   }
