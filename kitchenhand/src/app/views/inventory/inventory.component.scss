@@ -1,0 +1,17 @@
+.outlet-content {
+  display: flex;
+  flex-direction: row;
+
+  .thumbnail-img-wrapper {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+  }
+
+  .outlet-preview-details {
+    padding-left: 20px;
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+  }
+}

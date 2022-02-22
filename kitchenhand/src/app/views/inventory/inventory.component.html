@@ -2,7 +2,7 @@
   <ng-container *ngIf="outlets$ | async as outlets">
     <mat-card matRipple *ngFor="let outlet of outlets" (click)="outletClickedHandler(outlet)">
       <div class="outlet-content">
-        <div class="thumbnail_img__wrapper">
+        <div class="thumbnail-img-wrapper">
           <img *ngIf="outlet.image"
                [src]="outlet.image"
                [alt]="outlet.label"/>
