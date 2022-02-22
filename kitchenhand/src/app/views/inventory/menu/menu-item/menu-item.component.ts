@@ -42,7 +42,7 @@ export class MenuItemComponent implements OnInit {
         inventory,
         outletId: this.outletId,
         itemId: this.item?.id,
-        fulfillmentType
+        fulfillment: fulfillmentType
       }
     });
     updateDialog.afterClosed().subscribe(

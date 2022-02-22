@@ -75,7 +75,6 @@ app.patch('/outlets/:outletId/item/:itemId/stock', (req, res) => {
       };
       timeslots.push(newTimeslot);
     }
-
     switch (fulfillmentType) {
       case 'delivery':
         stocks[foundStockIdx].deliveryInventory.push({
@@ -93,7 +92,7 @@ app.patch('/outlets/:outletId/item/:itemId/stock', (req, res) => {
         break;
       default:
         res.sendStatus(403);
-        break;
+        return;
     }
 
     res.send({

@@ -34,7 +34,6 @@ export class InventoryService {
 
   public setStock(outletId: number, itemId: number, fulfillmentType: string, isBlocked?: boolean,
                   timeslot?: TimeSlot, amount?: number): Observable<boolean> {
-
     return this.http.patch(`http://localhost:3000/outlets/${outletId}/item/${itemId}/stock`,
       {
         fulfillmentType,
