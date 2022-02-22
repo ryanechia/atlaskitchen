@@ -24,6 +24,35 @@ export class MenuItemComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.initData();
+  }
+
+  getStartTime(timeslot: TimeSlot): string {
+    return new Date(timeslot.startTime).toLocaleString();
+  }
+
+  getEndTime(timeslot: TimeSlot): string {
+    return new Date(timeslot.endTime).toLocaleString();
+  }
+
+  openInventoryEditDialog(inventory: InventoryInfo, fulfillmentType: string): void {
+    let updateDialog = this.dialog.open(UpdateComponent, {
+      width: '350px',
+      data: {
+        inventory,
+        outletId: this.outletId,
+        itemId: this.item?.id,
+        fulfillmentType
+      }
+    });
+    updateDialog.afterClosed().subscribe(
+      () => {
+        this.initData();
+      }
+    )
+  }
+
+  public initData(): void {
     this.route.paramMap.pipe(
       tap((params: ParamMap) => this.outletId = Number(params.get('outletId'))),
       switchMap((params: ParamMap) => forkJoin([of(this.outletId || ''), of(params.get('itemId'))])),
@@ -37,26 +66,6 @@ export class MenuItemComponent implements OnInit {
         this.item = item;
         this.itemStock = itemStock;
       }
-    )
-  }
-
-  getStartTime(timeslot: TimeSlot): string {
-    return new Date(timeslot.startTime).toLocaleString();
-  }
-
-  getEndTime(timeslot: TimeSlot): string {
-    return new Date(timeslot.endTime).toLocaleString();
-  }
-
-  openInventoryEditDialog(inventory: InventoryInfo, fulfillmentType: string): void {
-    this.dialog.open(UpdateComponent, {
-      width: '350px',
-      data: {
-        inventory,
-        outletId: this.outletId,
-        itemId: this.item?.id,
-        fulfillmentType
-      }
-    });
+    );
   }
 }
