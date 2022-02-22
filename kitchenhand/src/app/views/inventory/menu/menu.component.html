@@ -1,4 +1,4 @@
-<div>
+<div class="page-header">
   <div class="outlet-logo" *ngIf="outlet">
     <img *ngIf="outlet.image"
          [src]="outlet.image"
@@ -12,8 +12,12 @@
       </svg>
     </div>
   </div>
-  <h1>{{outlet?.label}}</h1>
-  <mat-nav-list *ngIf="menu && menu.sections.length > 0">
+  <div class="label-wrapper">
+    <h2>{{outlet?.label}}</h2>
+  </div>
+</div>
+
+<mat-nav-list *ngIf="menu && menu.sections.length > 0">
      <ng-container *ngFor="let section of menu.sections">
        <h3 matSubheader>{{section.title}}</h3>
        <mat-list-item>
@@ -29,4 +33,3 @@
        </ng-container>
      </ng-container>
   </mat-nav-list>
-</div>

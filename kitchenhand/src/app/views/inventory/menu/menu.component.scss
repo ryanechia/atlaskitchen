@@ -1,0 +1,27 @@
+.page-header {
+  display: flex;
+  flex-direction: column;
+
+  .outlet-logo {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    img {
+      height: 300px;
+      width: auto;
+      object-fit: contain;
+    }
+  }
+
+  .label-wrapper {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    padding: 10px 20px;
+
+    h2 {
+      margin: 0;
+    }
+  }
+}
