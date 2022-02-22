@@ -32,13 +32,16 @@ export class InventoryService {
     );
   }
 
-  public setStock(outletId: number, itemId: number, fulfillmentType: string, servingDate?: Date, timeslot?: TimeSlot, amount?: number): Observable<boolean> {
+  public setStock(outletId: number, itemId: number, fulfillmentType: string, isBlocked?: boolean,
+                  startDate?: Date, endDate?: Date, timeslot?: TimeSlot, amount?: number): Observable<boolean> {
     return this.http.post('',
       {
-        serving_date: servingDate,
         outletId,
-        fulfillment_type: fulfillmentType,
-        time_slot: timeslot,
+        itemId,
+        fulfillmentType,
+        startDate,
+        endDate,
+        timeslot, // assumes the backend will search and match to existing timeslots and create if it doesn't exist.
         amount
       },
       { observe: 'response' }
