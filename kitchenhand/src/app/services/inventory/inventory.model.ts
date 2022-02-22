@@ -38,6 +38,7 @@ export interface TimeSlot {
 }
 
 export interface InventoryInfo {
+  id: number;
   timeslot: TimeSlot;
   quantity: number;
   block: boolean;

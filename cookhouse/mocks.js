@@ -112,21 +112,25 @@ export const outlets = [
 
 export const stockInfo = [
   {
+    id: 1,
     timeslot: timeslots[2],
     quantity: 20,
     block: false
   },
   {
+    id: 2,
     timeslot: timeslots[3],
     quantity: 500,
     block: false
   },
   {
+    id: 3,
     timeslot: timeslots[4],
     quantity: null,
     block: true
   },
   {
+    id: 4,
     timeslot: timeslots[5],
     quantity: null,
     block: true
