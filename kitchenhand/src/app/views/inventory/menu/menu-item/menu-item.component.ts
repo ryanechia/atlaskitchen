@@ -35,7 +35,7 @@ export class MenuItemComponent implements OnInit {
     return new Date(timeslot.endTime).toLocaleString();
   }
 
-  openInventoryEditDialog(inventory: InventoryInfo, fulfillmentType: string): void {
+  openInventoryEditDialog(fulfillmentType: string, inventory?: InventoryInfo): void {
     let updateDialog = this.dialog.open(UpdateComponent, {
       width: '350px',
       data: {

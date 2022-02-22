@@ -11,6 +11,10 @@
     <mat-tab-group mat-stretch-tabs>
       <mat-tab label="Pick Up">
         <mat-list role="list">
+          <mat-list-item role="listitem" mat-ripple (click)="openInventoryEditDialog('pickup')">
+            <mat-icon matListIcon>add_circle_outline</mat-icon>
+            Add new stock
+          </mat-list-item>
           <ng-container *ngFor="let pickupInventory of itemStock.pickupInventory">
             <mat-divider></mat-divider>
             <mat-list-item role="listitem">
@@ -19,11 +23,11 @@
                   to {{getEndTime(pickupInventory.timeslot)}}</div>
                 <ng-container *ngIf="pickupInventory.block; else pickupAvailable">
                   <div>Quantity Available: None</div>
-                  <mat-icon matListIcon (click)="openInventoryEditDialog(pickupInventory, 'pick')">edit</mat-icon>
+                  <mat-icon matListIcon (click)="openInventoryEditDialog('pickup', pickupInventory)">edit</mat-icon>
                 </ng-container>
                 <ng-template #pickupAvailable>
                   <div>Quantity Available: {{pickupInventory.quantity}}</div>
-                  <mat-icon matListIcon (click)="openInventoryEditDialog(pickupInventory, 'pick')">edit</mat-icon>
+                  <mat-icon matListIcon (click)="openInventoryEditDialog('pickup', pickupInventory)">edit</mat-icon>
                 </ng-template>
               </div>
             </mat-list-item>
@@ -32,6 +36,10 @@
       </mat-tab>
       <mat-tab label="Delivery">
         <mat-list role="list">
+          <mat-list-item role="listitem" mat-ripple (click)="openInventoryEditDialog('delivery')">
+            <mat-icon matListIcon>add_circle_outline</mat-icon>
+            Add new stock
+          </mat-list-item>
           <ng-container *ngFor="let deliveryInventory of itemStock.deliveryInventory">
             <mat-divider></mat-divider>
             <mat-list-item role="listitem">
@@ -40,11 +48,11 @@
                   to {{getEndTime(deliveryInventory.timeslot)}}</div>
                 <ng-container *ngIf="deliveryInventory.block; else deliveryAvailable">
                   <div>Quantity Available: None</div>
-                  <mat-icon matListIcon (click)="openInventoryEditDialog(deliveryInventory, 'delivery')">edit</mat-icon>
+                  <mat-icon matListIcon (click)="openInventoryEditDialog('delivery', deliveryInventory)">edit</mat-icon>
                 </ng-container>
                 <ng-template #deliveryAvailable>
                   <div>Quantity Available: {{deliveryInventory.quantity}}</div>
-                  <mat-icon matListIcon (click)="openInventoryEditDialog(deliveryInventory, 'delivery')">edit</mat-icon>
+                  <mat-icon matListIcon (click)="openInventoryEditDialog('delivery', deliveryInventory)">edit</mat-icon>
                 </ng-template>
               </div>
             </mat-list-item>
