@@ -8,11 +8,11 @@ import { MenuItemComponent } from './views/inventory/menu/menu-item/menu-item.co
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
-  { path: 'home', component: HomeComponent },
-  { path: 'inventory', component: InventoryComponent },
-  { path: 'inventory/outlet/:outletId', component: MenuComponent },
-  { path: 'inventory/outlet/:outletId/item/:itemId/modify', component: MenuItemComponent },
-  { path: 'orders', component: OrdersComponent },
+  { path: 'home', component: HomeComponent, data: {title: 'Kitchen Manager'} },
+  { path: 'inventory', component: InventoryComponent, data: {title: 'Outlets'} },
+  { path: 'inventory/outlet/:outletId', component: MenuComponent, data: {title: 'Menu'} },
+  { path: 'inventory/outlet/:outletId/item/:itemId/modify', component: MenuItemComponent, data: {title: 'Stock list'} },
+  { path: 'orders', component: OrdersComponent, data: {title: 'Orders'} },
 ];
 
 @NgModule({
