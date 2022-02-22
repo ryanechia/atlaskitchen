@@ -39,7 +39,8 @@ export class InventoryService {
       {
         fulfillmentType,
         timeslot, // assumes the backend will search and match to existing timeslots and create if it doesn't exist.
-        amount
+        amount,
+        isBlocked
       },
       { observe: 'response' }
     ).pipe(
