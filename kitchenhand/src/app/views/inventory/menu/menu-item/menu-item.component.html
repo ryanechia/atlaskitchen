@@ -8,7 +8,7 @@
 <!--    <mat-icon matListIcon (click)="openEditDialog()">edit</mat-icon>-->
   </div>
   <div *ngIf="itemStock">
-    <mat-tab-group>
+    <mat-tab-group mat-stretch-tabs>
       <mat-tab label="Pick Up">
         <mat-list role="list">
           <ng-container *ngFor="let pickupInventory of itemStock.pickupInventory">
