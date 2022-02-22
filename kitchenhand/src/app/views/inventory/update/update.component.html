@@ -7,10 +7,7 @@
         <span>Quantity is </span><strong>required</strong>
       </mat-error>
     </mat-form-field>
-    <mat-form-field appearance="standard">
-      <input [hidden]="true" matInput>
-      <mat-checkbox formControlName="blockedState" required>Block</mat-checkbox>
-    </mat-form-field>
+    <mat-checkbox formControlName="blockedState">Block</mat-checkbox>
     <mat-form-field appearance="standard">
       <mat-label>Date Range</mat-label>
       <mat-date-range-input [rangePicker]="picker">
