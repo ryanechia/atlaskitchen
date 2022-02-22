@@ -1,0 +1,47 @@
+.page-wrapper {
+  display: flex;
+  flex-direction: column;
+
+  .image-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    img {
+      height: 300px;
+      width: auto;
+      object-fit: contain;
+    }
+  }
+
+  .label-wrapper {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    padding: 10px 20px;
+
+    h2 {
+      margin: 0;
+    }
+  }
+
+  .list .mat-list-item {
+    min-height: 40px;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    padding: 8px;
+
+    .list-item-content {
+      flex-grow: 1;
+      width: 100%;
+    }
+
+    .edit-icon {
+      height: 24px;
+      width: 24px;
+      flex-shrink: 0;
+      justify-self: center;
+    }
+  }
+}

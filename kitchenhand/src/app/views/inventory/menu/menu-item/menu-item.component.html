@@ -1,4 +1,4 @@
-<div *ngIf="item">
+<div class="page-wrapper" *ngIf="item">
   <div class="image-wrapper">
     <img [src]="item.image"/>
 <!--    <mat-icon matListIcon (click)="openEditDialog()">edit</mat-icon>-->
@@ -10,7 +10,7 @@
   <div *ngIf="itemStock">
     <mat-tab-group mat-stretch-tabs>
       <mat-tab label="Pick Up">
-        <mat-list role="list">
+        <mat-list role="list" class="list">
           <mat-list-item role="listitem" mat-ripple (click)="openInventoryEditDialog('pickup')">
             <mat-icon matListIcon>add_circle_outline</mat-icon>
             Add new stock
@@ -18,24 +18,23 @@
           <ng-container *ngFor="let pickupInventory of itemStock.pickupInventory">
             <mat-divider></mat-divider>
             <mat-list-item role="listitem">
-              <div>
+              <div class="list-item-content">
                 <div *ngIf="pickupInventory.timeslot">Time Period: {{getStartTime(pickupInventory.timeslot)}}
                   to {{getEndTime(pickupInventory.timeslot)}}</div>
                 <ng-container *ngIf="pickupInventory.block; else pickupAvailable">
                   <div>Quantity Available: None</div>
-                  <mat-icon matListIcon (click)="openInventoryEditDialog('pickup', pickupInventory)">edit</mat-icon>
                 </ng-container>
                 <ng-template #pickupAvailable>
                   <div>Quantity Available: {{pickupInventory.quantity}}</div>
-                  <mat-icon matListIcon (click)="openInventoryEditDialog('pickup', pickupInventory)">edit</mat-icon>
                 </ng-template>
               </div>
+              <mat-icon class="edit-icon" (click)="openInventoryEditDialog('pickup', pickupInventory)">edit</mat-icon>
             </mat-list-item>
           </ng-container>
         </mat-list>
       </mat-tab>
       <mat-tab label="Delivery">
-        <mat-list role="list">
+        <mat-list role="list" class="list">
           <mat-list-item role="listitem" mat-ripple (click)="openInventoryEditDialog('delivery')">
             <mat-icon matListIcon>add_circle_outline</mat-icon>
             Add new stock
@@ -43,18 +42,18 @@
           <ng-container *ngFor="let deliveryInventory of itemStock.deliveryInventory">
             <mat-divider></mat-divider>
             <mat-list-item role="listitem">
-              <div>
+              <div class="list-item-content">
                 <div *ngIf="deliveryInventory.timeslot">Time Period: {{getStartTime(deliveryInventory.timeslot)}}
                   to {{getEndTime(deliveryInventory.timeslot)}}</div>
                 <ng-container *ngIf="deliveryInventory.block; else deliveryAvailable">
                   <div>Quantity Available: None</div>
-                  <mat-icon matListIcon (click)="openInventoryEditDialog('delivery', deliveryInventory)">edit</mat-icon>
                 </ng-container>
                 <ng-template #deliveryAvailable>
                   <div>Quantity Available: {{deliveryInventory.quantity}}</div>
-                  <mat-icon matListIcon (click)="openInventoryEditDialog('delivery', deliveryInventory)">edit</mat-icon>
                 </ng-template>
               </div>
+              <mat-icon class="edit-icon" (click)="openInventoryEditDialog('delivery', deliveryInventory)">edit</mat-icon>
+
             </mat-list-item>
           </ng-container>
         </mat-list>
