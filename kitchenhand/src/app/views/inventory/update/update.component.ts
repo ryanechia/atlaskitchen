@@ -20,7 +20,7 @@ export class UpdateComponent implements OnInit {
     private fb: FormBuilder,
     private inventoryService: InventoryService,
     public dialogRef: MatDialogRef<UpdateComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: { inventory: InventoryInfo, outletId: number, itemId: number, fulfillment: string }
+    @Inject(MAT_DIALOG_DATA) public data: { inventory?: InventoryInfo, outletId: number, itemId: number, fulfillment: string }
   ) {
   }
 
@@ -31,8 +31,8 @@ export class UpdateComponent implements OnInit {
       endDate: [ '', Validators.required ],
       startTime: [ '', Validators.required ],
       endTime: [ '', Validators.required ],
-      quantity: [ this.data.inventory.quantity, Validators.required ],
-      blockedState: [ this.data.inventory.block ]
+      quantity: [ this.data.inventory?.quantity || 0, Validators.required ],
+      blockedState: [ this.data.inventory?.block || false ]
     });
   }
 
