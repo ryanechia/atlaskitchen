@@ -43,9 +43,21 @@ export class UpdateComponent implements OnInit {
       endDate: [ defaultEndDate || '', Validators.required ],
       startTime: [ this.startTime || '', Validators.required ],
       endTime: [ this.endTime || '', Validators.required ],
-      quantity: [ this.data.inventory?.quantity || 0, Validators.required ],
+      quantity: [ null ],
       blockedState: [ this.data.inventory?.block || false ]
     });
+
+    const quantityControl = this.editInventoryForm.get('quantity');
+    this.editInventoryForm.get('blockedState')?.valueChanges.subscribe(
+      (isBlocked: boolean) => {
+        if (isBlocked) {
+          quantityControl?.disable();
+        } else {
+          quantityControl?.enable();
+        }
+        quantityControl?.updateValueAndValidity();
+      }
+    );
   }
 
   onSubmit(): void {
