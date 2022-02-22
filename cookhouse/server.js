@@ -1,4 +1,10 @@
-import { menuItems, outlets, stocks as mockStocks, timeslots as mockTimeslots } from './mocks.js';
+import {
+  menuItems,
+  outlets,
+  stockInfo as mockStocksInfo,
+  stocks as mockStocks,
+  timeslots as mockTimeslots
+} from './mocks.js';
 import express from 'express';
 import cors from 'cors';
 
@@ -11,6 +17,7 @@ app.use(express.json());
 // no db, just store in memory.
 let timeslots = mockTimeslots;
 let stocks = mockStocks;
+let stockInfo = mockStocksInfo;
 
 app.get('/', (req, res) => {
   res.send('Hello World!');
@@ -65,7 +72,7 @@ app.post('/outlets/:outletId/item/:itemId/stock', (req, res) => {
       newTimeslot = foundTimeslot[0];
     } else {
       // create new
-      const newId = timeslots.length;
+      const newId = timeslots.length + 1;
       newTimeslot = {
         id: newId,
         outletId,
@@ -74,20 +81,20 @@ app.post('/outlets/:outletId/item/:itemId/stock', (req, res) => {
       };
       timeslots.push(newTimeslot);
     }
+    const newInventory = {
+      id: stockInfo.length + 1,
+      timeslot: newTimeslot,
+      quantity: amount,
+      block: isBlocked
+    };
+    stockInfo.push(newInventory);
+
     switch (fulfillmentType) {
       case 'delivery':
-        stocks[foundStockIdx].deliveryInventory.push({
-          timeslot: newTimeslot,
-          quantity: amount,
-          block: isBlocked
-        });
+        stocks[foundStockIdx].deliveryInventory.push(newInventory);
         break;
       case 'pickup':
-        stocks[foundStockIdx].pickupInventory.push({
-          timeslot: newTimeslot,
-          quantity: amount,
-          block: isBlocked
-        });
+        stocks[foundStockIdx].pickupInventory.push(newInventory);
         break;
       default:
         res.sendStatus(403);
