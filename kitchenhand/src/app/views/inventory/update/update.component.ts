@@ -51,13 +51,15 @@ export class UpdateComponent implements OnInit {
         startTime: startDate,
         endTime: endDate
       };
-      this.inventoryService.setStock(this.data.outletId, this.data.itemId, this.data.fulfillment, this.editInventoryForm.value.blockedState,
-        newTimeslot, this.editInventoryForm.value.quantity).subscribe(
-        () => {
-          this.loadingSubmit = false;
-          this.complete();
-        }
-      );
+      if (this.data.inventory) {
+        this.inventoryService.setStock(this.data.outletId, this.data.itemId, this.data.fulfillment, this.editInventoryForm.value.blockedState,
+          newTimeslot, this.editInventoryForm.value.quantity).subscribe(
+          () => {
+            this.loadingSubmit = false;
+            this.complete();
+          }
+        );
+      }
     }
   }
 

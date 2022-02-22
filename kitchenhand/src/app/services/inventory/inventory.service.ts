@@ -35,7 +35,7 @@ export class InventoryService {
   public setStock(outletId: number, itemId: number, fulfillmentType: string, isBlocked?: boolean,
                   timeslot?: TimeSlot, amount?: number): Observable<boolean> {
 
-    return this.http.post(`/outlets/${outletId}/item/${itemId}/stock`,
+    return this.http.patch(`/outlets/${outletId}/item/${itemId}/stock`,
       {
         fulfillmentType,
         timeslot, // assumes the backend will search and match to existing timeslots and create if it doesn't exist.
