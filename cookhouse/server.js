@@ -1,4 +1,4 @@
-import { menuItems, outlets, stocks } from './mocks.js';
+import { menuItems, outlets, stocks, timeslots as mockTimeslots } from './mocks.js';
 import express from 'express';
 import cors from 'cors';
 
@@ -41,6 +41,19 @@ app.get('/outlets/:outletId/item/:itemId/stock', (req, res) => {
 
   res.send({
     stock: foundStock[0]
+  });
+});
+
+
+app.post('/outlets/:outletId/item/:itemId/stock', (req, res) => {
+  const outletId = req.params.outletId;
+  const itemId = req.params.itemId;
+  const fulfillmentType = req.body.fulfillmentType;
+  const timeslot = req.body.timeslot;
+  const amount = req.body.amount;
+
+  res.send({
+    stock: newStock[0]
   });
 });
 
